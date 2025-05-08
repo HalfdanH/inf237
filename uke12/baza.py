@@ -1,44 +1,47 @@
 import sys
 import time
 
-s = time.time()
+
+class Node:
+    def __init__(self):
+        self.count = 1 # Visited once
+        self.final = 0 # If 
+        self.children  = {}
+
 def trie(words):
-    root = {0: 0, 1:0}
+    root = Node()
     for word in words:
-        root[0]+=1
+        root.count+=1
         current = root
-        count = root[0]
+        count = root.count
         for letter in word:
-            if letter not in current:
-                current[letter] = {0: 1, 1: 0}
-                current = current[letter]
+            if letter not in current.children:
+                current.children[letter] = Node()
+                current = current.children[letter]
                 count+=1
             else:
-                current = current[letter]
-                current[0] += 1
-                count+= current[0]
+                current = current.children[letter]
+                current.count += 1
+                count+= current.count
 
-        current[1] = count
-        #current["*"] = "*"
+        current.final = count
 
 
     return root
 
 def find(t, w):
-    count = t[0]
+    count = t.count
     for letter in w:
-        if letter in t:
-            t = t[letter]
-            count+= t[0]
+        if letter in t.children:
+            t = t.children[letter]
+            count+= t.count
         else:
-            return count
-    if t[1] == 0:
-        return count
+            return count-1
+    if t.final == 0: # If not final it does not match
+        return count-1
     
-    return(t[1])
+    return(t.final-1)
         
-
-
 n = int(sys.stdin.readline())
 words = [0]*n
 for i in range(n):
@@ -51,6 +54,3 @@ for i in range(m):
 
     print(find(T, sys.stdin.readline().strip()))
     
-
-e = time.time()
-#print((e-s))
