@@ -5,7 +5,7 @@ import time
 class Node:
     def __init__(self):
         self.count = 1 # Visited once
-        self.final = 0 # If 
+        self.final = 0 # If end of word it is different then 0 
         self.children  = {}
 
 def trie(words):
@@ -36,11 +36,11 @@ def find(t, w):
             t = t.children[letter]
             count+= t.count
         else:
-            return count-1
+            return count-1 
     if t.final == 0: # If not final it does not match
         return count-1
     
-    return(t.final-1)
+    return(t.final-1) #since the root starts with 1 extra
         
 n = int(sys.stdin.readline())
 words = [0]*n
