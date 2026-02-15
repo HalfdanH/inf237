@@ -29,18 +29,18 @@ def trie(words):
 
     return root
 
-def find(t, w):
-    count = t.count
-    for letter in w:
-        if letter in t.children:
-            t = t.children[letter]
-            count+= t.count
+def find(trie_node, word):
+    count = trie_node.count
+    for letter in word:
+        if letter in trie_node.children:
+            trie_node = trie_node.children[letter]
+            count+= trie_node.count
         else:
             return count-1 
-    if t.final == 0: # If not final it does not match
+    if trie_node.final == 0: # If not final it does not match
         return count-1
     
-    return(t.final-1) #since the root starts with 1 extra
+    return(trie_node.final-1) #since the root starts with 1 extra
         
 n = int(sys.stdin.readline())
 words = [0]*n

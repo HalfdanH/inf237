@@ -27,7 +27,7 @@ for i in range(n):
 
 T = trie(words)
 
-print(T["h"].keys())
+print(T["h"])
 m = int(sys.stdin.readline())
 for i in range(m):
 

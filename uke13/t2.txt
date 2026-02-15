@@ -1,0 +1,10 @@
+5 2
+pikachu
+pikachuko
+pikapika
+dadad
+fishme
+5 2
+1 2 5 3 4
+3 2
+2 3 4
